@@ -1,0 +1,11 @@
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+
+# Change the follow commands with informations you want. 
+
+# This will do your backup per day
+#0 1 * * * root sh /your script directory/script_name.sh > /dev/null
+# This will do your backup per hour
+#00 */1 * * * root sh /your script directory/script_name.sh > /dev/null
