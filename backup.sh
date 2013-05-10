@@ -7,11 +7,14 @@
 
 # Script Configurations.
 # Put here global configurations.
-USER=""
-PASSWORD=""
-DATABASE=""
-DATABASE_DIR_OUTPUT=""
-BACKUP_REMOVE_TIME="60"
+USER=""                 # User Name (MySQL/MSSQL/SQLite). 
+PASSWORD=""             # Password for USER.
+DATABASE=""             # Database Name.
+DATABASE_DIR_OUTPUT=""  # Location where database will be saved.
+BACKUP_DIR_LOCATION=""  # Location where backup is.
+BACKUP_DIR_OUTPUT=""    # Location where backup will be saved.
+BACKUP_REMOVE_TIME="60" # Variable in days.
+
 
 backuptype(){
 	state=0
@@ -33,12 +36,15 @@ backuptype(){
 	done
 }
 
-directory(){	
-
 # Perform the backup of directory.
-#tar -zcf  /home/backup/backup-$(date '+%d-%m-%Y').tar /var/www/project
-#echo "Backup of directory was succeeded!"
-
+directory(){
+	state=0
+	clear
+	while [ $state -eq 0 ] ; do
+		echo "Backuping a directory..."
+		tar -zcf  $BACKUP_DIR_OUTPUT-$(date '+%d-%m-%Y').tar $BACKUP_DIR_LOCATION
+		echo "Backup of directory was succeeded!"
+	done
 }
 
 database(){	
