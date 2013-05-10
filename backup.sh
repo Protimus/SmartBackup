@@ -46,15 +46,9 @@ directory(){
 	clear
 	while [ $state -eq 0 ] ; do
 		echo "Backuping a directory..."
-		mkdir $BACKUP_DIR_OUTPUT
-		if [ -d $BACKUP_DIR_LOCATION -a -w $BACKUP_DIR_LOCATION ] ; then
-			estado=1
-			echo $BACKUP_DIR_LOCATION > $backupdir/$log
-		else
-			estado=0
-			echo "Error: Backup directory location doesn't exists or have permissions blocked."
+		if [ ! -d "${BACKUP_DIR_OUTPUT}" ]; then
+			mkdir -p "${BACKUP_DIR_OUTPUT}"
 		fi
-	done
 		tar -zcf  $BACKUP_DIR_OUTPUT-$(date '+%d-%m-%Y').tar $BACKUP_DIR_LOCATION
 		echo "Backup of directory was succeeded!"
 	done
